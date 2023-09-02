@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class CombatUnit : MonoBehaviour
 {
-    public enum MoveType { Attack = TargetType.OtherTeam, Heal = TargetType.SameTeam, Defend = TargetType.Self }
+    public enum MoveType { Attack = TargetType.OtherTeam, Heal = TargetType.SameTeam, Defend = TargetType.Self, SommonUnit = TargetType.Self }
     public enum CombatTeam { Player, Enemy }
     public enum TargetType { SameTeam, OtherTeam, Self }
 
@@ -41,6 +41,10 @@ public abstract class CombatUnit : MonoBehaviour
     public virtual void TakeDamage(int damage)
     {
         CurrentHealth -= damage;
+        if (CurrentHealth <= 0) 
+        {
+            Debug.Log("Unit has died");
+        }
     }
 
     public List<MoveType> AvailableMoves(CombatUnit target)
@@ -60,7 +64,7 @@ public abstract class CombatUnit : MonoBehaviour
             if (self && (type.Equals(TargetType.Self) || type.Equals(TargetType.SameTeam)))
             {
                 result.Add(move);
-            } else if (friendly && (type.Equals(TargetType.Self) || type.Equals(TargetType.SameTeam)))
+            } else if (friendly && type.Equals(TargetType.SameTeam))
             {
                 result.Add(move);
             } else if (!friendly && !self && type.Equals(TargetType.OtherTeam))

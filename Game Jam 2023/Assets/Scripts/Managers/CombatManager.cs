@@ -38,9 +38,9 @@ public class CombatManager : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    public void EndTurn()
     {
-        if (true)
+        if (true /* If king and at least one enemy unit is still alive */)
         {
             StartNewTurn();
         } else if (CombatOver())
@@ -52,7 +52,7 @@ public class CombatManager : MonoBehaviour
     //Returns true when the current combat has ended
     private bool CombatOver()
     {
-        return false;
+        return false; /* if king is dead or no units left alive on enemy team return true*/
     }
 
     private void StartNewTurn()
