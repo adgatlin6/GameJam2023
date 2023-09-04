@@ -18,6 +18,7 @@ public class MoveTypeButton : MonoBehaviour
         } 
     }
 
+    //Sets the MoveType assigned to this button. This script shouldn't need any updating
     public void SetMove()
     {
         UnitMoveButton.Move = Move;

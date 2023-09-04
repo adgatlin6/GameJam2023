@@ -11,6 +11,7 @@ public class CharacterSelector : MonoBehaviour
 
     public static CombatUnit ReceivingUnit;
 
+    //this is test code. When combat is fully set up, remove "acting" variable and all references to it
     public CombatUnit acting;
 
     private void Awake()
@@ -18,6 +19,11 @@ public class CharacterSelector : MonoBehaviour
         GameCamera = Camera.main;
         ActingUnit = acting;
     }
+
+    /*When left mouse button is pressed, if the user clicked on a unit, it will select that unit and generate MoveTypeButtons based on available moves that can be performed
+     * For example, if the PlayerKing is the ActingUnit, and the player clicks on their king unit, it will generate buttons for all moves that the king can use on itself, E.G. defend, heal
+     * No updates should be needed for this code, however the CombatManager will need to set ActingUnit to whichever unit's turn it is in combat every time it becomes a new unit's turn.
+     */ 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))

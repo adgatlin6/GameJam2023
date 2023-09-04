@@ -15,6 +15,7 @@ public abstract class CombatUnit : MonoBehaviour
     public int MaxDamage { get; protected set; }
     public int MinHealing { get; protected set; }
     public int MaxHealing { get; protected set; }
+    public bool IsDefending { get; set; }
   
     public CombatTeam Team { get;  set; }
 
@@ -22,8 +23,13 @@ public abstract class CombatUnit : MonoBehaviour
 
     public TargetType UnitType { get; set; }
 
+    /*
+     * To add new moves, first add the move to MoveType enum and assign what the move targets
+     * Then, add a new case to DoMove for the new Move and add whatever code needed for the case
+     * */
     public void DoMove(CombatUnit target, MoveType move)
     {
+
         switch (move)
         {
             case MoveType.Attack:
@@ -32,21 +38,34 @@ public abstract class CombatUnit : MonoBehaviour
             case MoveType.Heal:
                 target.TakeDamage(-(int)Random.Range(MinHealing, MaxHealing + 1));
                 break;
+            case MoveType.Defend:
+                IsDefending = true;
+                break;
             default:
                 Debug.Log("Invalid move");
                 break;
         }
     }
 
+    //Removes health. If unit has used Defend move since the last time it has been attacked, then the unit will take damage - defense in total damage.
+    //Healing is done by simply passing in a negative value, and the unit will heal for that amount.
     public virtual void TakeDamage(int damage)
     {
-        CurrentHealth -= damage;
-        if (CurrentHealth <= 0) 
+        if (damage > 0 && IsDefending)
         {
-            Debug.Log("Unit has died");
+            int damageTaken = damage - Defense;
+            if (damageTaken < 0) { damageTaken = 0; }
+            CurrentHealth -= damageTaken;
+            IsDefending = false;
+        }
+        else
+        {
+            CurrentHealth -= damage;
         }
     }
 
+    //Returns a list of Moves available to this unit based on the target.
+    //I.E. The Player King will be able to attack enemy units, but not heal them. And can heal friendly units, but not attack them.
     public List<MoveType> AvailableMoves(CombatUnit target)
     {
         bool self = false;

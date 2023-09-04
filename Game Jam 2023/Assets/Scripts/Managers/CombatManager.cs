@@ -14,11 +14,12 @@ public class CombatManager : MonoBehaviour
 
     private bool TurnOver { get; set; }
 
+    //Sets up the battle. Initializes turn order for units and CombatControllers.
     public void InitializeCombat()
     {
-        //Temporary. Logic will be added to set units later
-        player.Initialize(null);
-        enemy.Initialize(null);
+
+        player.Initialize();
+        enemy.Initialize();
 
 
         int playerCount = player.LivingUnits.Count;
@@ -52,7 +53,21 @@ public class CombatManager : MonoBehaviour
     //Returns true when the current combat has ended
     private bool CombatOver()
     {
-        return false; /* if king is dead or no units left alive on enemy team return true*/
+        bool kingAlive = false;
+        bool enemiesAlive = false;
+        foreach (CombatUnit unit in combatOrder)
+        {
+            if(unit.GetType() == typeof(PlayerKing))
+            {
+                kingAlive = true;
+            }
+            if(unit.Team == CombatUnit.CombatTeam.Enemy)
+            {
+                enemiesAlive = true;
+            }
+        }
+
+        return !kingAlive || !enemiesAlive;
     }
 
     private void StartNewTurn()
@@ -63,15 +78,17 @@ public class CombatManager : MonoBehaviour
             {
                 combatOrder.Remove(unit);
                 //update UI to show new turn order
+                //Remove dead character from combat
             }
         }
         //sets the screen up to play a new combat turn
+        //Select the next unit in CombatOrder to go. Set ActingUnit.ActingUnit to the next unit in the list
     }
 
     private void ReturnToGame()
     {
         combatOrder.Clear();
-        //reset character health? Tidy up character stats, give exp etc.
+        //reset character health
         //move camera back to player and enable controls.
     }
 }

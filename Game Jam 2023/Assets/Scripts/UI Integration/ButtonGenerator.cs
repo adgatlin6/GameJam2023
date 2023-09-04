@@ -16,6 +16,7 @@ public class ButtonGenerator : MonoBehaviour
 
     private List<GameObject> activeButtons;
 
+    //Generates buttons for each move available given the selecting ActingUnit and ReceivingUnit in CharacterSelector script
     public void GenerateButtons(List<CombatUnit.MoveType> moves)
     {
         for (int i = 0; i < moves.Count; i++)
@@ -30,6 +31,7 @@ public class ButtonGenerator : MonoBehaviour
         }
     }
 
+    //Clears old buttons when new Acting or Receiving unit is selected
     public void ClearButtons()
     {
         foreach (GameObject obj in activeButtons)
@@ -38,6 +40,7 @@ public class ButtonGenerator : MonoBehaviour
         }
     }
 
+    //Sets up a Singleton to be references globally
     private void Awake()
     {
         if(Instance == null ) { Instance = this; }

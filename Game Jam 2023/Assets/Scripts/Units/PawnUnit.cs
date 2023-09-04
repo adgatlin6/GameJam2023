@@ -10,9 +10,10 @@ public class PawnUnit : CombatUnit
         Moves = new List<MoveType>();
         MinDamage = 1;
         MaxDamage = 5;
-        MaxHealth = 1;
+        MaxHealth = 15;
+        Defense = 5;
         CurrentHealth = MaxHealth;
-        Moves.Add(MoveType.Attack);
+        Moves = new List<CombatUnit.MoveType> { MoveType.Attack, MoveType.Defend };
         if (PlayerTeam)
         {
             Team = CombatTeam.Player;
