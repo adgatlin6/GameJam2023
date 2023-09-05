@@ -21,6 +21,11 @@ public class StartGameButton : MonoBehaviour
         SceneManager.LoadScene("CreditsMenu");
     }
 
+    public void ControlsMenu()
+    {
+        SceneManager.LoadScene("ControlsMenu");
+    }
+
     public void BackButton()
     {
         SceneManager.LoadScene("MainMenu");
