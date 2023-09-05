@@ -15,4 +15,14 @@ public class StartGameButton : MonoBehaviour
     {
         SceneManager.LoadScene("AustinDevScene");
     }
+
+    public void CreditsMenu()
+    {
+        SceneManager.LoadScene("CreditsMenu");
+    }
+
+    public void BackButton()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }        
