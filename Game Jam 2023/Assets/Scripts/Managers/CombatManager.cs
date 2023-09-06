@@ -55,6 +55,7 @@ public class CombatManager : MonoBehaviour
     {
         bool kingAlive = false;
         bool enemiesAlive = false;
+        //int combatCount = 0;
         foreach (CombatUnit unit in combatOrder)
         {
             if(unit.GetType() == typeof(PlayerKing))
@@ -68,7 +69,15 @@ public class CombatManager : MonoBehaviour
         }
 
         return !kingAlive || !enemiesAlive;
+        //combatCount = combatCount + 1;
     }
+
+
+   // public void ChangeScene()
+   //{
+        //if (combat)
+    //}
+
 
     private void StartNewTurn()
     {
