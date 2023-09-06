@@ -13,7 +13,7 @@ public class StartGameButton : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("AustinDevScene");
+        SceneManager.LoadScene("NPC01");
     }
 
     public void CreditsMenu()
