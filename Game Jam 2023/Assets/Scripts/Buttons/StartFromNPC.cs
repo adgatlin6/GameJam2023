@@ -7,6 +7,8 @@ public class StartFromNPC : MonoBehaviour
 {
     public void StartNPC01()
     {
-        SceneManager.LoadScene("Level01");
+        SceneManager.LoadScene("ChooseFighters");
     }
+
+
 }

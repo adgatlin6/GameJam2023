@@ -24,6 +24,15 @@ EditorBuildSettings:
     path: Assets/Scenes/NPC01.unity
     guid: f796f204b45ccc5429ea8367c52c80fb
   - enabled: 1
+    path: Assets/Scenes/NPC02.unity
+    guid: 7d7fa0c0fc7f85e449bc1289ca12b3f0
+  - enabled: 1
     path: Assets/Scenes/NPC03.unity
-    guid: 4679febef226d594ab466fd96b9699a9
+    guid: 05ab0af745be3a04490be26bd484249a
+  - enabled: 1
+    path: Assets/Scenes/Level02.unity
+    guid: f642c1bb210fce042af529440aad663e
+  - enabled: 1
+    path: Assets/Scenes/Level03.unity
+    guid: 32dc11afd8363db4e8e054db028c5bc1
   m_configObjects: {}
